@@ -10,16 +10,20 @@ class Communication
       end
     rescue => e
       puts "・・・・・・"
+      puts e.message
+      puts e.class
     end
   end
-  end3
+  end
 
 greeting = Communication.new
 greeting.greet
 
 puts "-------------------------------------------------------------------------"
+class TestError < StandardError
+  end
 
-class Rebirth_chance < StandardError
+class Rebirth_chance
   def rebirth
     puts 'あなたは自分が何故死んだか覚えていますか？'
     answer = ["老衰", "自殺", "腹上死", "過労死"]
@@ -34,11 +38,13 @@ class Rebirth_chance < StandardError
       if i == 4
         puts "「頑張ったのに残念でしたね、転生させてあげましょう」"
       else
-        raise MyError
+        raise TestError
       end
     rescue => e
       puts '残念！転生できず'
       puts "さぁ天国へいきましょう"
+      puts e.message
+      puts e.class
     ensure
       puts 'end'
     end
